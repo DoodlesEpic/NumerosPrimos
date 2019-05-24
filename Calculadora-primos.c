@@ -8,8 +8,8 @@ static const bool false = 0;
 static const bool true = 1;
 #endif
 
-bool ePrimo(int numero);
-bool numerosPrimos[sizeof(int) * 2000000];
+bool ePrimo(unsigned int numero);
+bool numerosPrimos[sizeof(unsigned int)];
 
 int main(int argc)
 {
@@ -23,19 +23,19 @@ int main(int argc)
     wprintf(L"Modo de texto definido para UTF-8!\n");
 
     wprintf(L"Vamos calcular todos os números primos até um certo valor, insira o número: ");
-    int numero;
-    scanf("%d", &numero);
+    unsigned int numero;
+    scanf("%u", &numero);
 
     if (argc > 1) {
-        for (int i = 0; i <= numero; i++) {
+        for (unsigned int i = 0; i <= numero; i++) {
             if (ePrimo(i) == true) {
-                wprintf(L"O número %d é primo\n", i);
+                wprintf(L"O número %u é primo\n", i);
             }
         }
     } 
     
     if (argc <= 1){
-        for (int i = 0; i <= numero; i++) {
+        for (unsigned int i = 0; i <= numero; i++) {
             if (ePrimo(i) == true) {
                 numerosPrimos[i] = true;
             } else {
@@ -46,10 +46,10 @@ int main(int argc)
         FILE* fptr = _wfopen(L"números_primos.txt", L"w");
         fwprintf(fptr, L"Os seguintes números são primos:\n");
         wprintf(L"Os seguintes números são primos:\n");
-        for (int i = 0; i < numero; i++) {
+        for (unsigned int i = 0; i < numero; i++) {
             if (numerosPrimos[i] == true) {
-                wprintf(L"%d, ", i);
-                fprintf(fptr, "%i, ", i);
+                wprintf(L"%u, ", i);
+                fprintf(fptr, "%u, ", i);
             }
         }
         fclose(fptr);
@@ -60,8 +60,8 @@ int main(int argc)
     return 0;
 }
 
-bool ePrimo(int numero) {
-    for (int i = 2; i < numero; i++) {
+bool ePrimo(unsigned int numero) {
+    for (unsigned int i = 2; i < numero; i++) {
         if (numero % i == 0) {
             return false;
         }
