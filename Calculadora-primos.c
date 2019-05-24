@@ -43,12 +43,16 @@ int main(int argc)
             }
         }
 
+        FILE* fptr = _wfopen(L"números_primos.txt", L"w");
+        fwprintf(fptr, L"Os seguintes números são primos:\n");
         wprintf(L"Os seguintes números são primos:\n");
         for (int i = 0; i < numero; i++) {
             if (numerosPrimos[i] == true) {
                 wprintf(L"%d, ", i);
+                fprintf(fptr, "%i, ", i);
             }
         }
+        fclose(fptr);
     }
 
     wprintf(L"Calculados!\n");
