@@ -46,6 +46,12 @@ int main(int argc)
         }
 
         FILE *fptr = _wfopen(L"números_primos.txt", L"w");
+        if (!fptr)
+        {
+            wprintf(L"Não foi possível abrir o arquivo números_primos.txt. Saindo.");
+            return 1;
+        }
+
         fwprintf(fptr, L"Os seguintes números são primos:\n");
         wprintf(L"Os seguintes números são primos:\n");
         for (unsigned int i = 0; i < numero; i++)
