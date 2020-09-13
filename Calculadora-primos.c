@@ -31,7 +31,7 @@ int main(int argc)
     {
         for (unsigned int i = 0; i <= numero; i++)
         {
-            if (ePrimo(i) == true)
+            if (ePrimo(i))
             {
                 wprintf(L"O número %u é primo\n", i);
             }
@@ -42,14 +42,7 @@ int main(int argc)
     {
         for (unsigned int i = 0; i <= numero; i++)
         {
-            if (ePrimo(i) == true)
-            {
-                numerosPrimos[i] = true;
-            }
-            else
-            {
-                numerosPrimos[i] = false;
-            }
+            numerosPrimos[i] = ePrimo(i);
         }
 
         FILE *fptr = _wfopen(L"números_primos.txt", L"w");
@@ -57,7 +50,7 @@ int main(int argc)
         wprintf(L"Os seguintes números são primos:\n");
         for (unsigned int i = 0; i < numero; i++)
         {
-            if (numerosPrimos[i] == true)
+            if (numerosPrimos[i])
             {
                 wprintf(L"%u, ", i);
                 fprintf(fptr, "%u, ", i);
