@@ -45,7 +45,7 @@ int main(int argc)
             numerosPrimos[i] = ePrimo(i);
         }
 
-        FILE *fptr = _wfopen(L"números_primos.txt", L"w");
+        FILE *fptr = _wfopen(L"números_primos.txt", L"w,ccs=UTF-8");
         if (!fptr)
         {
             wprintf(L"Não foi possível abrir o arquivo números_primos.txt. Saindo.");
@@ -59,7 +59,7 @@ int main(int argc)
             if (numerosPrimos[i])
             {
                 wprintf(L"%u, ", i);
-                fprintf(fptr, "%u, ", i);
+                fwprintf(fptr, L"%u, ", i);
             }
         }
         fclose(fptr);
