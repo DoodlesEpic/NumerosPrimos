@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <fcntl.h>
+#include <wchar.h>
+#include <locale.h>
 
 bool ePrimo(unsigned int numero);
 
@@ -13,8 +15,8 @@ int main(int argc)
         wprintf(L"Iniciado no modo de debug ao vivo!\n");
     }
 
-    // Alterar modo de output de stdout para suportar UTF-8
-    _setmode(_fileno(stdout), 0x00040000);
+    // Alterar locale para suportar UTF-8
+    setlocale(LC_ALL, "");
     wprintf(L"Modo de texto definido para UTF-8!\n");
 
     wprintf(L"Vamos calcular todos os números primos até um certo valor, insira o número: ");
@@ -55,10 +57,10 @@ int main(int argc)
         }
 
         // Abrir arquivo para salvar os números calculados
-        FILE *fptr = _wfopen(L"números_primos.txt", L"w,ccs=UTF-8");
+        FILE *fptr = fopen("numeros_primos.txt", "w,ccs=UTF-8");
         if (!fptr)
         {
-            wprintf(L"Não foi possível abrir o arquivo números_primos.txt. Saindo.");
+            wprintf(L"Não foi possível abrir o arquivo numeros_primos.txt. Saindo.");
             return 1;
         }
 
