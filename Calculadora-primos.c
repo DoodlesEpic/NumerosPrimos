@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <fcntl.h>
-#include <io.h>
 
 #ifndef __cplusplus
 typedef unsigned char bool;
