@@ -1,14 +1,12 @@
 #include <stdio.h>
-#include <fcntl.h>
+#include <stdlib.h>
 #include <stdbool.h>
+#include <fcntl.h>
 
 bool ePrimo(unsigned int numero);
-bool numerosPrimos[sizeof(unsigned int)];
 
 int main(int argc)
 {
-    wprintf(L"Memoria alocada!\n");
-
     // Ao receber argumentos o programa inicia no modo live
     if (argc > 1)
     {
@@ -42,6 +40,14 @@ int main(int argc)
     //
     if (argc <= 1)
     {
+        // Alocar array para salvar os números primos
+        bool *numerosPrimos = malloc(sizeof(unsigned int) * numero);
+        if (!numerosPrimos)
+        {
+            wprintf(L"Não foi possível alocar o array de números primos. Saindo.");
+            return 1;
+        }
+
         // Calcular todos os números primos até o numero
         for (unsigned int i = 0; i <= numero; i++)
         {
@@ -70,6 +76,9 @@ int main(int argc)
 
         // Salvar arquivo com os números primos
         fclose(fptr);
+
+        // Liberar memória do array
+        free(numerosPrimos);
     }
 
     wprintf(L"Calculados!\n");
