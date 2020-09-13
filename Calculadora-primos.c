@@ -15,7 +15,8 @@ int main(int argc)
 {
     wprintf(L"Memoria alocada!\n");
 
-    if (argc > 1) { 
+    if (argc > 1)
+    {
         wprintf(L"Iniciado no modo de debug ao vivo!\n");
     }
 
@@ -26,28 +27,38 @@ int main(int argc)
     unsigned int numero;
     scanf("%u", &numero);
 
-    if (argc > 1) {
-        for (unsigned int i = 0; i <= numero; i++) {
-            if (ePrimo(i) == true) {
+    if (argc > 1)
+    {
+        for (unsigned int i = 0; i <= numero; i++)
+        {
+            if (ePrimo(i) == true)
+            {
                 wprintf(L"O número %u é primo\n", i);
             }
         }
-    } 
-    
-    if (argc <= 1){
-        for (unsigned int i = 0; i <= numero; i++) {
-            if (ePrimo(i) == true) {
+    }
+
+    if (argc <= 1)
+    {
+        for (unsigned int i = 0; i <= numero; i++)
+        {
+            if (ePrimo(i) == true)
+            {
                 numerosPrimos[i] = true;
-            } else {
+            }
+            else
+            {
                 numerosPrimos[i] = false;
             }
         }
 
-        FILE* fptr = _wfopen(L"números_primos.txt", L"w");
+        FILE *fptr = _wfopen(L"números_primos.txt", L"w");
         fwprintf(fptr, L"Os seguintes números são primos:\n");
         wprintf(L"Os seguintes números são primos:\n");
-        for (unsigned int i = 0; i < numero; i++) {
-            if (numerosPrimos[i] == true) {
+        for (unsigned int i = 0; i < numero; i++)
+        {
+            if (numerosPrimos[i] == true)
+            {
                 wprintf(L"%u, ", i);
                 fprintf(fptr, "%u, ", i);
             }
@@ -60,9 +71,12 @@ int main(int argc)
     return 0;
 }
 
-bool ePrimo(unsigned int numero) {
-    for (unsigned int i = 2; i < numero; i++) {
-        if (numero % i == 0) {
+bool ePrimo(unsigned int numero)
+{
+    for (unsigned int i = 2; i < numero; i++)
+    {
+        if (numero % i == 0)
+        {
             return false;
         }
     }
