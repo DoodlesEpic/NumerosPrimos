@@ -35,6 +35,28 @@ ou para iniciar no modo ao vivo:
 ./Calculadora-primos.bin -l
 ```
 
+## Compilar
+
+Utilizamos o GCC para compilar o software, com a flag -Os ou -O2.
+
+### Windows
+
+Para compilar no Windows será necessário o compilador gcc que não pode ser instalado nativamente. O pacote recomendado é o Mingw-w64, um fork do projeto MinGW (Minimalist GNU for Windows).
+Após instalar e adicionar ao PATH o comando para compilar será:
+
+```shell
+gcc Calculadora-primos.c -Os -o Calculadora-primos.exe
+```
+
+### Linux
+
+No Linux o processo de compilação é mais simples, apenas é necessário ter o gcc instalado.
+Para compilar utilize o comando:
+
+```shell
+gcc Calculadora-primos.c -Os -o Calculadora-primos.bin
+```
+
 ## Licença
 
 Esse repositório está licenciado na licença MIT, cheque o arquivo "LICENSE" para mais informações
