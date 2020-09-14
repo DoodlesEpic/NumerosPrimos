@@ -5,7 +5,7 @@ Uma calculadora que consegue todos os números primos até certo número inserid
 ## Baixar e testar
 
 Caso queira apenas testar o programa em sua máquina, você apenas precisar baixar o projeto indo em Code -> Download ZIP na interface do GitHub.
-Como alternativa você pode utilizar o comando `git clone https://github.com/DoodlesEpic/Calculadora-numeros-primos.git` no terminal/cmd e terá o repositório baixado (isso requer git instalado).
+Como alternativa você pode utilizar o comando `git clone https://github.com/DoodlesEpic/Calculadora-numeros-primos.git` no terminal/cmd e terá o repositório baixado (isso requer [git](https://git-scm.com/) instalado).
 
 ### Windows
 
@@ -37,12 +37,12 @@ ou para iniciar no modo ao vivo:
 
 ## Compilar
 
-Utilizamos o GCC para compilar o software, com a flag -Os ou -O2.
+Utilizamos o [gcc](https://gcc.gnu.org/ "Website do gcc") para compilar o software, com a flag -Os ou -O2.
 
 ### Windows
 
-Para compilar no Windows será necessário o compilador gcc que não pode ser instalado nativamente. O pacote recomendado é o Mingw-w64, um fork do projeto MinGW (Minimalist GNU for Windows).
-Após instalar e adicionar ao PATH o comando para compilar será:
+Para compilar no Windows será necessário o compilador gcc que não pode ser instalado nativamente. O pacote recomendado é o [Mingw-w64](http://mingw-w64.org/doku.php/start "GCC for Windows 64 & 32 bits"), um fork do projeto [MinGW](http://www.mingw.org/ "Minimalist GNU for Windows") (Minimalist GNU for Windows).
+Após [baixar e instalar](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/installer/mingw-w64-install.exe/download "Download Sourceforge") e adicionar ao PATH o comando para compilar será:
 
 ```shell
 gcc Calculadora-primos.c -Os -o Calculadora-primos.exe
@@ -50,7 +50,7 @@ gcc Calculadora-primos.c -Os -o Calculadora-primos.exe
 
 ### Linux
 
-No Linux o processo de compilação é mais simples, apenas é necessário ter o gcc instalado.
+No Linux o processo de compilação é mais simples, apenas é necessário ter o [gcc](https://gcc.gnu.org/ "Website do gcc") instalado. A instalação pode ser feita de diferentes formas dependendo de sua distro, muitas vezes já vem incluido.
 Para compilar utilize o comando:
 
 ```shell
@@ -59,7 +59,7 @@ gcc Calculadora-primos.c -Os -o Calculadora-primos.bin
 
 ## Licença
 
-Esse repositório está licenciado na licença MIT, cheque o arquivo "LICENSE" para mais informações
+Esse repositório está licenciado na licença MIT, cheque o arquivo ["LICENSE"](../blob/master/LICENSE) para mais informações
 
 ## Projetos relacionados
 
