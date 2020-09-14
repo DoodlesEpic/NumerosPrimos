@@ -59,7 +59,7 @@ gcc Calculadora-primos.c -Os -o Calculadora-primos.bin
 
 ## Licença
 
-Esse repositório está licenciado na licença MIT, cheque o arquivo ["LICENSE"](../blob/master/LICENSE) para mais informações
+Esse repositório está licenciado na licença MIT, cheque o arquivo ["LICENSE"](LICENSE) para mais informações
 
 ## Projetos relacionados
 
