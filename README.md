@@ -9,7 +9,7 @@ Como alternativa você pode utilizar o comando `git clone https://github.com/Doo
 
 ### Windows
 
-Para iniciar apenas abra o prompt de comando, utilize `cd pasta` para chegar na pasta em que está o arquivo. E inicie utilizando:
+Para iniciar apenas abra o prompt de comando, utilize `cd Calculadora-numeros-primos` para chegar na pasta em que está o arquivo. E inicie utilizando:
 
 ```shell
 Calculadora-primos.exe
@@ -23,7 +23,7 @@ Calculadora-primos.exe -l
 
 ### Linux
 
-Para iniciar apenas abra o terminal, utilize `cd pasta` para chegar na pasta em que está o arquivo. E inicie utilizando:
+Para iniciar apenas abra o terminal, utilize `cd Calculadora-numeros-primos` para chegar na pasta em que está o arquivo. E inicie utilizando:
 
 ```shell
 ./Calculadora-primos.bin
