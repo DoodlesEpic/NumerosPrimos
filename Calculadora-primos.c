@@ -43,7 +43,7 @@ int main(int argc)
     if (argc <= 1)
     {
         // Alocar array para salvar os números primos
-        bool *numerosPrimos = malloc(sizeof(unsigned int) * numero);
+        bool *numerosPrimos = malloc(sizeof(bool) * numero);
         if (!numerosPrimos)
         {
             wprintf(L"Não foi possível alocar o array de números primos. Saindo.");
