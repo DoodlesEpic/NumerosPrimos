@@ -1,6 +1,6 @@
-# Calculadora-numeros-primos
+# Calculadora de Números Primos
 
-Uma calculadora que consegue todos os números primos até certo número inserido, distribuida em diversas linguagens, esse é o repositório C
+Uma calculadora que consegue todos os números primos até certo número inserido, distribuida em diversas linguagens, esse é o repositório C.
 
 ## Baixar e testar
 
@@ -59,7 +59,7 @@ gcc Calculadora-primos.c -Os -o Calculadora-primos.bin
 
 ## Licença
 
-Esse repositório está licenciado na licença MIT, cheque o arquivo ["LICENSE"](LICENSE) para mais informações
+Esse repositório está licenciado na licença MIT, cheque o arquivo ["LICENSE"](LICENSE) para mais informações.
 
 ## Projetos relacionados
 
