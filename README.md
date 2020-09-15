@@ -4,12 +4,12 @@ Uma calculadora que consegue todos os números primos até certo número inserid
 
 ## Baixar e testar
 
-Caso queira apenas testar o programa em sua máquina, você apenas precisar baixar o projeto indo em Code -> Download ZIP na interface do GitHub.
-Como alternativa você pode utilizar o comando `git clone https://github.com/DoodlesEpic/Calculadora-numeros-primos.git` no terminal/cmd e terá o repositório baixado (isso requer [git](https://git-scm.com/) instalado).
+Caso queira apenas testar o programa em sua máquina, você apenas precisar baixar o projeto indo em Releases na interface do GitHub e escolhendo o executável do seu respectivo sistema.
+Como alternativa você pode utilizar o comando `git clone https://github.com/DoodlesEpic/Calculadora-numeros-primos.git` no terminal/cmd para baixar o repositório, e compilar direto da fonte.
 
 ### Windows
 
-Para iniciar apenas abra o prompt de comando, utilize `cd Calculadora-numeros-primos` para chegar na pasta em que está o arquivo. E inicie utilizando:
+Para iniciar apenas abra o prompt de comando na pasta em que está o arquivo. Inicie utilizando:
 
 ```shell
 Calculadora-primos.exe
@@ -23,7 +23,7 @@ Calculadora-primos.exe -l
 
 ### Linux
 
-Para iniciar apenas abra o terminal, utilize `cd Calculadora-numeros-primos` para chegar na pasta em que está o arquivo. E inicie utilizando:
+Para iniciar apenas abra o terminal na pasta em que está o arquivo. Inicie utilizando:
 
 ```shell
 ./Calculadora-primos.bin
