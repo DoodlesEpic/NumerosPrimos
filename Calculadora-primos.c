@@ -28,7 +28,7 @@ int main(int argc)
     //
     if (argc > 1)
     {
-        for (unsigned int i = 0; i <= numero; i++)
+        for (unsigned int i = 2; i <= numero; i++)
         {
             if (ePrimo(i))
             {
@@ -51,7 +51,7 @@ int main(int argc)
         }
 
         // Calcular todos os números primos até o numero
-        for (unsigned int i = 0; i <= numero; i++)
+        for (unsigned int i = 2; i <= numero; i++)
         {
             numerosPrimos[i] = ePrimo(i);
         }
@@ -67,7 +67,7 @@ int main(int argc)
         // Printar e salvar todos os números primos
         fwprintf(fptr, L"Os seguintes números são primos:\n");
         wprintf(L"Os seguintes números são primos:\n");
-        for (unsigned int i = 0; i < numero; i++)
+        for (unsigned int i = 2; i < numero; i++)
         {
             if (numerosPrimos[i])
             {
