@@ -50,11 +50,17 @@ gcc Calculadora-primos.c -Os -o Calculadora-primos.exe
 
 ### Linux
 
-No Linux o processo de compilação é mais simples, apenas é necessário ter o [gcc](https://gcc.gnu.org/ "Website do gcc") instalado. A instalação pode ser feita de diferentes formas dependendo de sua distro, muitas vezes já vem incluido.
+No Linux o processo de compilação é mais simples, apenas é necessário ter o [gcc](https://gcc.gnu.org/ "Website do gcc") e o [make](https://www.gnu.org/software/make/ "Website do make") instalado. A instalação pode ser feita de diferentes formas dependendo de sua distro, ambos geralmente vem incluido.
 Para compilar utilize o comando:
 
 ```shell
-gcc Calculadora-primos.c -Os -o Calculadora-primos.bin
+make
+```
+
+Também é possível limpar o arquivos .o e o binário da pasta com:
+
+```shell
+make clean
 ```
 
 ## Licença
