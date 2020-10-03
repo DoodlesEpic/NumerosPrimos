@@ -5,7 +5,7 @@
 #include <wchar.h>
 #include <locale.h>
 
-bool ePrimo(unsigned int numero);
+#include "Calculadora-primos.h"
 
 int main(int argc)
 {
