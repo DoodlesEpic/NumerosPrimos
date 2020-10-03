@@ -26,13 +26,13 @@ Calculadora-primos.exe -l
 Para iniciar apenas abra o terminal, utilize `cd Calculadora-numeros-primos` para chegar na pasta em que está o arquivo. E inicie utilizando:
 
 ```shell
-./Calculadora-primos.bin
+./Calculadora-primos
 ```
 
 ou para iniciar no modo ao vivo:
 
 ```shell
-./Calculadora-primos.bin -l
+./Calculadora-primos -l
 ```
 
 ## Compilar
