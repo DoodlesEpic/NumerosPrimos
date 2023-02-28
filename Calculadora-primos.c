@@ -70,7 +70,7 @@ int main(int argc, char *argv[]) {
   //
   else {
     // Alocar array para salvar os números primos
-    bool *numerosPrimos = malloc(sizeof(bool) * numero);
+    bool *numerosPrimos = (bool *)malloc(sizeof(bool) * numero);
     if (!numerosPrimos) {
       wprintf(L"Não foi possível alocar o array de números primos. Saindo.");
       return 1;
