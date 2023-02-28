@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+#include <argp.h>
 #include <fcntl.h>
 #include <locale.h>
 #include <stdbool.h>
@@ -32,20 +33,45 @@ SOFTWARE.
 
 #include "Calculadora-primos.h"
 
+const char *argp_program_version = "numeros_primos 1.1";
+const char *argp_program_bug_address = "<moraes.eduardo@proton.me>";
+static char doc[] = " Calculadora de números primos em C, saiba quais números "
+                    "primos existem até certo número.";
+static char args_doc[] = "";
+static struct argp_option options[] = {
+    {"live", 'l', 0, 0,
+     "Printar valores em tempo real ao invés de esperar cálculo acabar."},
+    {0}};
+
+struct argumentos {
+  bool modoLive;
+};
+
+static error_t parse_opt(int key, char *arg, struct argp_state *state) {
+  struct argumentos *argumentos = state->input;
+  switch (key) {
+  case 'l':
+    argumentos->modoLive = true;
+    break;
+  case ARGP_KEY_ARG:
+    return 0;
+  default:
+    return ARGP_ERR_UNKNOWN;
+  }
+  return 0;
+}
+
+static struct argp argp = {options, parse_opt, args_doc, doc, 0, 0, 0};
+
 int main(int argc, char *argv[]) {
   // Alterar locale para suportar UTF-8
   setlocale(LC_ALL, "pt_BR.UTF-8");
 
-  bool modoLive = false;
-  if (argc > 1) {
-    if (strcmp(argv[1], "--live") != 0) {
-      wprintf(L"Argumento inválido. Uso correto:\nNumerosPrimos --live\n");
-      return 1;
-    }
+  struct argumentos argumentos;
 
-    wprintf(L"Iniciado no modo de debug ao vivo!\n");
-    modoLive = true;
-  }
+  argumentos.modoLive = false;
+
+  argp_parse(&argp, argc, argv, 0, 0, &argumentos);
 
   wprintf(L"Vamos calcular todos os números primos até um certo valor, insira "
           L"o número: ");
@@ -56,7 +82,7 @@ int main(int argc, char *argv[]) {
   // MODO LIVE: Os números são printados ao serem calculados, e não são salvos
   // em um arquivo
   //
-  if (modoLive) {
+  if (argumentos.modoLive) {
     for (unsigned int i = 2; i <= numero; i++) {
       if (ePrimo(i)) {
         wprintf(L"O número %u é primo\n", i);
