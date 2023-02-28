@@ -41,7 +41,8 @@ static const char doc[] =
 static const char args_doc[] = "";
 static const struct argp_option options[] = {
     {"live", 'l', 0, 0,
-     "Printar valores em tempo real ao invés de esperar cálculo acabar.", 0}};
+     "Printar valores em tempo real ao invés de esperar cálculo acabar.", 0},
+    {0, 0, 0, 0, 0, 0}};
 
 struct argumentos {
   bool modoLive;
