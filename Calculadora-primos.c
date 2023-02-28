@@ -77,7 +77,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Calcular todos os números primos até o numero
-    for (unsigned int i = 2; i <= numero; i++) {
+    for (unsigned int i = 2; i < numero; i++) {
       numerosPrimos[i] = ePrimo(i);
     }
 
