@@ -82,7 +82,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Abrir arquivo para salvar os números calculados
-    FILE *fptr = fopen("numeros_primos.txt", "w,ccs=UTF-8");
+    FILE *fptr = fopen("numeros_primos.txt", "w");
     if (!fptr) {
       wprintf(L"Não foi possível abrir o arquivo numeros_primos.txt. Saindo.");
       return 1;
