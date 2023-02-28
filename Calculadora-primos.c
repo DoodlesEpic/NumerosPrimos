@@ -96,7 +96,7 @@ int main(int argc, char *argv[]) {
   //
   else {
     // Alocar array para salvar os números primos
-    bool *const numerosPrimos = (bool *)malloc(sizeof(bool) * numero);
+    bool *const restrict numerosPrimos = (bool *)malloc(sizeof(bool) * numero);
     if (!numerosPrimos) {
       wprintf(L"Não foi possível alocar o array de números primos. Saindo.");
       return 1;
@@ -108,7 +108,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Abrir arquivo para salvar os números calculados
-    FILE *const fptr = fopen("numeros_primos.txt", "w");
+    FILE *const restrict fptr = fopen("numeros_primos.txt", "w");
     if (!fptr) {
       wprintf(L"Não foi possível abrir o arquivo numeros_primos.txt. Saindo.");
       return 1;
