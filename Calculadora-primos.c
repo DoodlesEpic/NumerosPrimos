@@ -35,13 +35,13 @@ SOFTWARE.
 
 const char *argp_program_version = "numeros_primos 1.1";
 const char *argp_program_bug_address = "<moraes.eduardo@proton.me>";
-static char doc[] = " Calculadora de números primos em C, saiba quais números "
-                    "primos existem até certo número.";
-static char args_doc[] = "";
-static struct argp_option options[] = {
+static const char doc[] =
+    " Calculadora de números primos em C, saiba quais números "
+    "primos existem até certo número.";
+static const char args_doc[] = "";
+static const struct argp_option options[] = {
     {"live", 'l', 0, 0,
-     "Printar valores em tempo real ao invés de esperar cálculo acabar.", 0},
-    {0}};
+     "Printar valores em tempo real ao invés de esperar cálculo acabar.", 0}};
 
 struct argumentos {
   bool modoLive;
@@ -61,18 +61,18 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
   return 0;
 }
 
-static struct argp argp = {options, parse_opt, args_doc, doc, 0, 0, 0};
+static const struct argp argp = {options, parse_opt, args_doc, doc, 0, 0, 0};
 
 int main(int argc, char *argv[]) {
   // Alterar locale para suportar UTF-8
   setlocale(LC_ALL, "pt_BR.UTF-8");
 
+  // Inicializar argumentos passados por linha de comando
   struct argumentos argumentos;
-
   argumentos.modoLive = false;
-
   argp_parse(&argp, argc, argv, 0, 0, &argumentos);
 
+  // Pegar o número até onde os números primos serão calculados
   wprintf(L"Vamos calcular todos os números primos até um certo valor, insira "
           L"o número: ");
   unsigned int numero;
@@ -96,7 +96,7 @@ int main(int argc, char *argv[]) {
   //
   else {
     // Alocar array para salvar os números primos
-    bool *numerosPrimos = (bool *)malloc(sizeof(bool) * numero);
+    bool *const numerosPrimos = (bool *)malloc(sizeof(bool) * numero);
     if (!numerosPrimos) {
       wprintf(L"Não foi possível alocar o array de números primos. Saindo.");
       return 1;
@@ -108,7 +108,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Abrir arquivo para salvar os números calculados
-    FILE *fptr = fopen("numeros_primos.txt", "w");
+    FILE *const fptr = fopen("numeros_primos.txt", "w");
     if (!fptr) {
       wprintf(L"Não foi possível abrir o arquivo numeros_primos.txt. Saindo.");
       return 1;
@@ -137,7 +137,7 @@ int main(int argc, char *argv[]) {
 }
 
 // Retorna true caso numero seja primo, false caso não seja
-bool ePrimo(unsigned int numero) {
+bool ePrimo(const unsigned int numero) {
   for (unsigned int i = 2; i < numero; i++) {
     if (numero % i == 0) {
       return false;
