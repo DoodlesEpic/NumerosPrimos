@@ -5,7 +5,8 @@ Uma calculadora que consegue todos os números primos até certo número inserid
 ## Baixar e testar
 
 Caso queira apenas testar o programa em sua máquina, você apenas precisar baixar o projeto indo em Releases na interface do GitHub e escolhendo o executável do seu respectivo sistema.
-Como alternativa você pode utilizar o comando `git clone https://github.com/DoodlesEpic/Calculadora-numeros-primos.git` no terminal/cmd para baixar o repositório, e compilar direto da fonte.
+
+Alternativamente clonar o repositório via: `git clone https://github.com/DoodlesEpic/NumerosPrimos.git` no terminal para baixar o repositório, e compilar direto da fonte.
 
 ### Comandos
 
