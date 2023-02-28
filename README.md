@@ -45,7 +45,7 @@ Para compilar tenha gcc, clang ou msvc configurado no seu sistema.
 Para desenvolvimento utilize os comandos:
 
 ```shell
-meson setup build -Dbuildtype=debugoptimized
+meson setup build -Dbuildtype=debugoptimized -Db_sanitize=address
 cd build
 meson compile
 ```
