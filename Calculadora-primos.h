@@ -22,5 +22,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+#ifndef CALCULADORA_PRIMOS_H
+#define CALCULADORA_PRIMOS_H
+
+#include <stdbool.h>
+
 // Retorna true caso numero seja primo, false caso não seja
 bool ePrimo(unsigned int numero);
+
+#endif // CALCULADORA_PRIMOS_H
