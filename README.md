@@ -7,32 +7,20 @@ Uma calculadora que consegue todos os números primos até certo número inserid
 Caso queira apenas testar o programa em sua máquina, você apenas precisar baixar o projeto indo em Releases na interface do GitHub e escolhendo o executável do seu respectivo sistema.
 Como alternativa você pode utilizar o comando `git clone https://github.com/DoodlesEpic/Calculadora-numeros-primos.git` no terminal/cmd para baixar o repositório, e compilar direto da fonte.
 
-### Windows
-
-Para iniciar apenas abra o prompt de comando na pasta em que está o arquivo. Inicie utilizando:
+### Comandos
 
 ```shell
-Calculadora-primos.exe
-```
+Usage: NumerosPrimos [OPTION...] [NÚMERO]
+ Calculadora de números primos em C, saiba quais números primos existem até
+certo número.
 
-ou para iniciar no modo ao vivo:
+  -l, --live                 Printar valores em tempo real ao invés de esperar
+                             cálculo acabar.
+  -?, --help                 Dar a lista de comandos
+      --usage                Mostra como usar o programa
+  -V, --version              Veja a versão do programa
 
-```shell
-Calculadora-primos.exe -l
-```
-
-### Linux
-
-Para iniciar apenas abra o terminal na pasta em que está o arquivo. Inicie utilizando:
-
-```shell
-./Calculadora-primos
-```
-
-ou para iniciar no modo ao vivo:
-
-```shell
-./Calculadora-primos -l
+Reporte bugs para <moraes.eduardo@proton.me>.
 ```
 
 ## Compilar
@@ -42,6 +30,8 @@ Para compilar tenha gcc, clang ou msvc configurado no seu sistema.
 
 ### Debug
 
+A build de debug habilita o address sanitizer para tentar encontrar erros no uso de memória, mas mantém as otimizações -O2 habilitadas.
+
 Para desenvolvimento utilize os comandos:
 
 ```shell
@@ -50,7 +40,9 @@ cd build
 meson compile
 ```
 
-### Prod
+### Release
+
+A build de release desabilita símbolos, address sanitizer e utiliza -O3 como flag de otimização.
 
 Para criar um binário otimizado utilize:
 
