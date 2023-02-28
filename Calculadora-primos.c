@@ -38,27 +38,43 @@ const char *argp_program_bug_address = "<moraes.eduardo@proton.me>";
 static const char doc[] =
     " Calculadora de números primos em C, saiba quais números "
     "primos existem até certo número.";
-static const char args_doc[] = "";
+static const char args_doc[] = "[NÚMERO]";
 static const struct argp_option options[] = {
     {"live", 'l', 0, 0,
      "Printar valores em tempo real ao invés de esperar cálculo acabar.", 0},
     {0, 0, 0, 0, 0, 0}};
 
 struct argumentos {
+  char *args[1];
   bool modoLive;
 };
 
 static error_t parse_opt(int key, char *arg, struct argp_state *state) {
   struct argumentos *argumentos = state->input;
+
   switch (key) {
+
   case 'l':
     argumentos->modoLive = true;
     break;
+
   case ARGP_KEY_ARG:
-    return 0;
+    if (state->arg_num >= 1)
+      argp_usage(state);
+
+    argumentos->args[state->arg_num] = arg;
+    break;
+
+  case ARGP_KEY_END:
+    if (state->arg_num < 1)
+      argp_usage(state);
+
+    break;
+
   default:
     return ARGP_ERR_UNKNOWN;
   }
+
   return 0;
 }
 
@@ -70,14 +86,12 @@ int main(int argc, char *argv[]) {
 
   // Inicializar argumentos passados por linha de comando
   struct argumentos argumentos;
+  argumentos.args[0] = argv[0];
   argumentos.modoLive = false;
   argp_parse(&argp, argc, argv, 0, 0, &argumentos);
 
   // Pegar o número até onde os números primos serão calculados
-  wprintf(L"Vamos calcular todos os números primos até um certo valor, insira "
-          L"o número: ");
-  unsigned int numero;
-  scanf("%u", &numero);
+  const unsigned int numero = atoi(argumentos.args[0]);
 
   //
   // MODO LIVE: Os números são printados ao serem calculados, e não são salvos
