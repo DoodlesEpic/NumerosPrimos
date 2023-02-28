@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+#include <argp.h>
 #include <fcntl.h>
 #include <locale.h>
 #include <stdbool.h>
@@ -32,31 +33,71 @@ SOFTWARE.
 
 #include "Calculadora-primos.h"
 
+const char *argp_program_version = "numeros_primos 1.1";
+const char *argp_program_bug_address = "<moraes.eduardo@proton.me>";
+static const char doc[] =
+    " Calculadora de números primos em C, saiba quais números "
+    "primos existem até certo número.";
+static const char args_doc[] = "[NÚMERO]";
+static const struct argp_option options[] = {
+    {"live", 'l', 0, 0,
+     "Printar valores em tempo real ao invés de esperar cálculo acabar.", 0},
+    {0, 0, 0, 0, 0, 0}};
+
+struct argumentos {
+  char *args[1];
+  bool modoLive;
+};
+
+static error_t parse_opt(int key, char *arg, struct argp_state *state) {
+  struct argumentos *argumentos = state->input;
+
+  switch (key) {
+
+  case 'l':
+    argumentos->modoLive = true;
+    break;
+
+  case ARGP_KEY_ARG:
+    if (state->arg_num >= 1)
+      argp_usage(state);
+
+    argumentos->args[state->arg_num] = arg;
+    break;
+
+  case ARGP_KEY_END:
+    if (state->arg_num < 1)
+      argp_usage(state);
+
+    break;
+
+  default:
+    return ARGP_ERR_UNKNOWN;
+  }
+
+  return 0;
+}
+
+static const struct argp argp = {options, parse_opt, args_doc, doc, 0, 0, 0};
+
 int main(int argc, char *argv[]) {
   // Alterar locale para suportar UTF-8
   setlocale(LC_ALL, "pt_BR.UTF-8");
 
-  bool modoLive = false;
-  if (argc > 1) {
-    if (strcmp(argv[1], "--live") != 0) {
-      wprintf(L"Argumento inválido. Uso correto:\nNumerosPrimos --live\n");
-      return 1;
-    }
+  // Inicializar argumentos passados por linha de comando
+  struct argumentos argumentos;
+  argumentos.args[0] = argv[0];
+  argumentos.modoLive = false;
+  argp_parse(&argp, argc, argv, 0, 0, &argumentos);
 
-    wprintf(L"Iniciado no modo de debug ao vivo!\n");
-    modoLive = true;
-  }
-
-  wprintf(L"Vamos calcular todos os números primos até um certo valor, insira "
-          L"o número: ");
-  unsigned int numero;
-  scanf("%u", &numero);
+  // Pegar o número até onde os números primos serão calculados
+  const unsigned int numero = atoi(argumentos.args[0]);
 
   //
   // MODO LIVE: Os números são printados ao serem calculados, e não são salvos
   // em um arquivo
   //
-  if (modoLive) {
+  if (argumentos.modoLive) {
     for (unsigned int i = 2; i <= numero; i++) {
       if (ePrimo(i)) {
         wprintf(L"O número %u é primo\n", i);
@@ -70,7 +111,7 @@ int main(int argc, char *argv[]) {
   //
   else {
     // Alocar array para salvar os números primos
-    bool *numerosPrimos = (bool *)malloc(sizeof(bool) * numero);
+    bool *const restrict numerosPrimos = (bool *)malloc(sizeof(bool) * numero);
     if (!numerosPrimos) {
       wprintf(L"Não foi possível alocar o array de números primos. Saindo.");
       return 1;
@@ -82,7 +123,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Abrir arquivo para salvar os números calculados
-    FILE *fptr = fopen("numeros_primos.txt", "w");
+    FILE *const restrict fptr = fopen("numeros_primos.txt", "w");
     if (!fptr) {
       wprintf(L"Não foi possível abrir o arquivo numeros_primos.txt. Saindo.");
       return 1;
@@ -111,7 +152,7 @@ int main(int argc, char *argv[]) {
 }
 
 // Retorna true caso numero seja primo, false caso não seja
-bool ePrimo(unsigned int numero) {
+bool ePrimo(const unsigned int numero) {
   for (unsigned int i = 2; i < numero; i++) {
     if (numero % i == 0) {
       return false;
