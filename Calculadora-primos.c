@@ -27,19 +27,25 @@ SOFTWARE.
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <wchar.h>
 
 #include "Calculadora-primos.h"
 
-int main(int argc) {
-  // Ao receber argumentos o programa inicia no modo live
-  if (argc > 1) {
-    wprintf(L"Iniciado no modo de debug ao vivo!\n");
-  }
-
+int main(int argc, char *argv[]) {
   // Alterar locale para suportar UTF-8
-  setlocale(LC_ALL, "");
-  wprintf(L"Modo de texto definido para UTF-8!\n");
+  setlocale(LC_ALL, "pt_BR.UTF-8");
+
+  bool modoLive = false;
+  if (argc > 1) {
+    if (strcmp(argv[1], "--live") != 0) {
+      wprintf(L"Argumento inválido. Uso correto:\nNumerosPrimos --live\n");
+      return 1;
+    }
+
+    wprintf(L"Iniciado no modo de debug ao vivo!\n");
+    modoLive = true;
+  }
 
   wprintf(L"Vamos calcular todos os números primos até um certo valor, insira "
           L"o número: ");
@@ -50,7 +56,7 @@ int main(int argc) {
   // MODO LIVE: Os números são printados ao serem calculados, e não são salvos
   // em um arquivo
   //
-  if (argc > 1) {
+  if (modoLive) {
     for (unsigned int i = 2; i <= numero; i++) {
       if (ePrimo(i)) {
         wprintf(L"O número %u é primo\n", i);
@@ -62,7 +68,7 @@ int main(int argc) {
   // MODO PADRÃO: Os números são printados após todos serem calculados, e são
   // salvos em um arquivo
   //
-  if (argc <= 1) {
+  else {
     // Alocar array para salvar os números primos
     bool *numerosPrimos = malloc(sizeof(bool) * numero);
     if (!numerosPrimos) {
