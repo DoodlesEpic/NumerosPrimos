@@ -40,7 +40,7 @@ static char doc[] = " Calculadora de números primos em C, saiba quais números 
 static char args_doc[] = "";
 static struct argp_option options[] = {
     {"live", 'l', 0, 0,
-     "Printar valores em tempo real ao invés de esperar cálculo acabar."},
+     "Printar valores em tempo real ao invés de esperar cálculo acabar.", 0},
     {0}};
 
 struct argumentos {
