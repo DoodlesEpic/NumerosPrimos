@@ -37,32 +37,27 @@ ou para iniciar no modo ao vivo:
 
 ## Compilar
 
-Utilizamos o [gcc](https://gcc.gnu.org/ "Website do gcc") para compilar o software, com a flag -Os ou -O2.
+Para compilar tenha gcc, clang ou msvc configurado no seu sistema.
+É necessário usar o build system [Meson](https://mesonbuild.com/) para compilar.
 
-### Windows
+### Debug
 
-Para compilar no Windows será necessário o compilador gcc que não pode ser instalado nativamente. O pacote recomendado é o [Mingw-w64](http://mingw-w64.org/doku.php/start "GCC for Windows 64 & 32 bits"), um fork do projeto [MinGW](http://www.mingw.org/ "Minimalist GNU for Windows") (Minimalist GNU for Windows).
-Após [baixar e instalar](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/installer/mingw-w64-install.exe/download "Download Sourceforge") e adicionar ao PATH o comando para compilar será:
+Para desenvolvimento utilize os comandos:
 
 ```shell
-mingw32-make
+meson setup build -Dbuildtype=debugoptimized
+cd build
+meson compile
 ```
 
-Não é necessário remover os arquivos gerados, pois não são rastreados pelo git. Porém é possível deletá-los manualmente.
+### Prod
 
-### Linux
-
-No Linux apenas é necessário ter o [gcc](https://gcc.gnu.org/ "Website do gcc") e o [make](https://www.gnu.org/software/make/ "Website do make") instalado. A instalação pode ser feita de diferentes formas dependendo de sua distro, ambos geralmente vem incluido.
-Para compilar utilize o comando:
+Para criar um binário otimizado utilize:
 
 ```shell
-make
-```
-
-Também é possível limpar o arquivos .o e o binário da pasta com:
-
-```shell
-make clean
+meson setup prod -Dbuildtype=release
+cd build
+meson compile
 ```
 
 ## Licença
