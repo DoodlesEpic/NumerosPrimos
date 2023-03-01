@@ -27,24 +27,22 @@ SOFTWARE.
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <wchar.h>
 
 #include "Calculadora-primos.h"
 
 static const char *version = "numeros_primos 1.3";
 static void help(const char *name) {
-  wprintf(L"Uso: %s [OPÇÃO] [NÚMERO]\n", name);
-  wprintf(L"Calculadora de números primos em C, saiba quais números primos "
-          L"existem até certo número.\n\n");
+  printf("Uso: %s [OPÇÃO] [NÚMERO]\n", name);
+  printf("Calculadora de números primos em C, saiba quais números primos "
+         "existem até certo número.\n\n");
 
-  wprintf(L"Opções:\n");
-  wprintf(L"  -l, --live     Printar valores em tempo real ao invés de esperar "
-          "cálculo acabar.\n");
-  wprintf(L"  -?, --help     Mostra essa ajuda.\n");
-  wprintf(L"  -v, --version  Mostra a versão do programa.\n\n");
+  printf("Opções:\n");
+  printf("  -l, --live     Printar valores em tempo real ao invés de esperar "
+         "cálculo acabar.\n");
+  printf("  -?, --help     Mostra essa ajuda.\n");
+  printf("  -v, --version  Mostra a versão do programa.\n\n");
 
-  wprintf(L"Reporte bugs para <moraes.eduardo@proton.me>.\n");
+  printf("Reporte bugs para <moraes.eduardo@proton.me>.\n");
 }
 
 static const struct option options[] = {
@@ -68,17 +66,17 @@ int main(int argc, char *argv[]) {
       help(argv[0]);
       return 0;
     case 'v':
-      wprintf(L"%s\n", version);
+      printf("%s\n", version);
       return 0;
     default:
-      fwprintf(stderr, L"Opção inválida: -%c\n", optopt);
+      fprintf(stderr, "Opção inválida: -%c\n", optopt);
       return 1;
     }
   }
 
   if (optind >= argc) {
-    fwprintf(stderr, L"Número faltando.\n");
-    wprintf(L"Uso: %s [OPÇÃO] [NÚMERO]\n", argv[0]);
+    fprintf(stderr, "Número faltando.\n");
+    printf("Uso: %s [OPÇÃO] [NÚMERO]\n", argv[0]);
     return 1;
   }
 
@@ -97,7 +95,7 @@ int main(int argc, char *argv[]) {
   if (modoLive) {
     for (unsigned int i = 2; i <= numero; i++) {
       if (ePrimo(i)) {
-        wprintf(L"O número %u é primo\n", i);
+        printf("O número %u é primo\n", i);
       }
     }
   }
@@ -110,7 +108,7 @@ int main(int argc, char *argv[]) {
     // Alocar array para salvar os números primos
     bool *const restrict numerosPrimos = (bool *)malloc(sizeof(bool) * numero);
     if (!numerosPrimos) {
-      wprintf(L"Não foi possível alocar o array de números primos. Saindo.");
+      printf("Não foi possível alocar o array de números primos. Saindo.");
       return 1;
     }
 
@@ -122,17 +120,17 @@ int main(int argc, char *argv[]) {
     // Abrir arquivo para salvar os números calculados
     FILE *const restrict fptr = fopen("numeros_primos.txt", "w");
     if (!fptr) {
-      wprintf(L"Não foi possível abrir o arquivo numeros_primos.txt. Saindo.");
+      printf("Não foi possível abrir o arquivo numeros_primos.txt. Saindo.");
       return 1;
     }
 
     // Printar e salvar todos os números primos
-    fwprintf(fptr, L"Os seguintes números são primos:\n");
-    wprintf(L"Os seguintes números são primos:\n");
+    fprintf(fptr, "Os seguintes números são primos:\n");
+    printf("Os seguintes números são primos:\n");
     for (unsigned int i = 2; i < numero; i++) {
       if (numerosPrimos[i]) {
-        wprintf(L"%u, ", i);
-        fwprintf(fptr, L"%u, ", i);
+        printf("%u, ", i);
+        fprintf(fptr, "%u, ", i);
       }
     }
 
@@ -143,7 +141,7 @@ int main(int argc, char *argv[]) {
     free(numerosPrimos);
   }
 
-  wprintf(L"Calculados!\n");
+  printf("Calculados!\n");
 
   return 0;
 }
