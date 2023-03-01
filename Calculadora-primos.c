@@ -32,7 +32,7 @@ SOFTWARE.
 
 #include "Calculadora-primos.h"
 
-static const char *version = "numeros_primos 1.2";
+static const char *version = "numeros_primos 1.3";
 static void help(const char *name) {
   wprintf(L"Uso: %s [OPÇÃO] [NÚMERO]\n", name);
   wprintf(L"Calculadora de números primos em C, saiba quais números primos "

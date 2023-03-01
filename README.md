@@ -10,16 +10,14 @@ Alternativamente clonar o repositório via: `git clone https://github.com/Doodle
 
 ### Comandos
 
-```shell
-Usage: NumerosPrimos [OPTION...] [NÚMERO]
- Calculadora de números primos em C, saiba quais números primos existem até
+```
+Uso: ./NumerosPrimos [OPÇÃO] [NÚMERO]
+Calculadora de números primos em C, saiba quais números primos existem até
 certo número.
 
-  -l, --live                 Printar valores em tempo real ao invés de esperar
-                             cálculo acabar.
-  -?, --help                 Dar a lista de comandos
-      --usage                Mostra como usar o programa
-  -V, --version              Veja a versão do programa
+  -l, --live      Printar valores em tempo real ao invés de esperar cálculo acabar.
+  -?, --help      Dar a lista de comandos
+  -V, --version   Veja a versão do programa
 
 Reporte bugs para <moraes.eduardo@proton.me>.
 ```
@@ -49,7 +47,7 @@ Para criar um binário otimizado utilize:
 
 ```shell
 meson setup prod -Dbuildtype=release
-cd build
+cd prod
 meson compile
 ```
 
