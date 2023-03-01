@@ -22,8 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#include <argp.h>
-#include <fcntl.h>
+#include <getopt.h>
 #include <locale.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -33,71 +32,57 @@ SOFTWARE.
 
 #include "Calculadora-primos.h"
 
-const char *argp_program_version = "numeros_primos 1.1";
-const char *argp_program_bug_address = "<moraes.eduardo@proton.me>";
-static const char doc[] =
-    " Calculadora de números primos em C, saiba quais números "
-    "primos existem até certo número.";
-static const char args_doc[] = "[NÚMERO]";
-static const struct argp_option options[] = {
-    {"live", 'l', 0, 0,
-     "Printar valores em tempo real ao invés de esperar cálculo acabar.", 0},
-    {0, 0, 0, 0, 0, 0}};
-
-struct argumentos {
-  char *args[1];
-  bool modoLive;
-};
-
-static error_t parse_opt(int key, char *arg, struct argp_state *state) {
-  struct argumentos *argumentos = state->input;
-
-  switch (key) {
-
-  case 'l':
-    argumentos->modoLive = true;
-    break;
-
-  case ARGP_KEY_ARG:
-    if (state->arg_num >= 1)
-      argp_usage(state);
-
-    argumentos->args[state->arg_num] = arg;
-    break;
-
-  case ARGP_KEY_END:
-    if (state->arg_num < 1)
-      argp_usage(state);
-
-    break;
-
-  default:
-    return ARGP_ERR_UNKNOWN;
-  }
-
-  return 0;
+static void help(const char *name) {
+  wprintf(L"Uso: %s [OPÇÃO] [NÚMERO]\n", name);
+  wprintf(L"\n");
+  wprintf(L"Opções:\n");
+  wprintf(L"  -l, --live     Printar valores em tempo real ao invés de esperar "
+          "cálculo acabar.\n");
+  wprintf(L"  -?, --help     Mostra essa ajuda.\n");
 }
 
-static const struct argp argp = {options, parse_opt, args_doc, doc, 0, 0, 0};
+static const struct option options[] = {{"live", no_argument, NULL, 'l'},
+                                        {"help", no_argument, NULL, '?'}};
 
 int main(int argc, char *argv[]) {
   // Alterar locale para suportar UTF-8
   setlocale(LC_ALL, "pt_BR.UTF-8");
 
   // Inicializar argumentos passados por linha de comando
-  struct argumentos argumentos;
-  argumentos.args[0] = argv[0];
-  argumentos.modoLive = false;
-  argp_parse(&argp, argc, argv, 0, 0, &argumentos);
+  bool modoLive = false;
+  for (int c = 0; (c = getopt_long(argc, argv, "l?", options, NULL)) != -1;) {
+    switch (c) {
+    case 'l':
+      modoLive = true;
+      break;
+    case '?':
+      help(argv[0]);
+      return 0;
+    default:
+      fwprintf(stderr, L"Opção inválida: -%c\n", optopt);
+      return 1;
+    }
+  }
+
+  if (optind >= argc) {
+    fwprintf(stderr, L"Número faltando.\n");
+    wprintf(L"Uso: %s [OPÇÃO] [NÚMERO]\n", argv[0]);
+    return 1;
+  }
+
+  const unsigned int numero = atoi(argv[optind]);
 
   // Pegar o número até onde os números primos serão calculados
-  const unsigned int numero = atoi(argumentos.args[0]);
+  if (numero <= 1) {
+    fprintf(stderr, "O número deve ser maior que 1.\n");
+    return 1;
+  }
 
   //
   // MODO LIVE: Os números são printados ao serem calculados, e não são salvos
   // em um arquivo
   //
-  if (argumentos.modoLive) {
+  if (modoLive) {
     for (unsigned int i = 2; i <= numero; i++) {
       if (ePrimo(i)) {
         wprintf(L"O número %u é primo\n", i);
