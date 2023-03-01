@@ -28,6 +28,6 @@ SOFTWARE.
 #include <stdbool.h>
 
 // Retorna true caso numero seja primo, false caso não seja
-bool ePrimo(unsigned int numero);
+bool __attribute__((const)) ePrimo(const unsigned long numero);
 
 #endif // CALCULADORA_PRIMOS_H

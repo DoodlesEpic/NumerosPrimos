@@ -80,7 +80,7 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
-  const unsigned int numero = atoi(argv[optind]);
+  const unsigned long numero = strtoul(argv[optind], NULL, 10);
 
   // Pegar o número até onde os números primos serão calculados
   if (numero <= 1) {
@@ -93,9 +93,9 @@ int main(int argc, char *argv[]) {
   // em um arquivo
   //
   if (modoLive) {
-    for (unsigned int i = 2; i <= numero; i++) {
+    for (unsigned long i = 2; i <= numero; i++) {
       if (ePrimo(i)) {
-        printf("O número %u é primo\n", i);
+        printf("O número %lu é primo\n", i);
       }
     }
   }
@@ -113,7 +113,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Calcular todos os números primos até o numero
-    for (unsigned int i = 2; i < numero; i++) {
+    for (unsigned long i = 2; i < numero; i++) {
       numerosPrimos[i] = ePrimo(i);
     }
 
@@ -127,10 +127,10 @@ int main(int argc, char *argv[]) {
     // Printar e salvar todos os números primos
     fprintf(fptr, "Os seguintes números são primos:\n");
     printf("Os seguintes números são primos:\n");
-    for (unsigned int i = 2; i < numero; i++) {
+    for (unsigned long i = 2; i < numero; i++) {
       if (numerosPrimos[i]) {
-        printf("%u, ", i);
-        fprintf(fptr, "%u, ", i);
+        printf("%lu, ", i);
+        fprintf(fptr, "%lu, ", i);
       }
     }
 
@@ -147,7 +147,7 @@ int main(int argc, char *argv[]) {
 }
 
 // Retorna true caso numero seja primo, false caso não seja
-bool ePrimo(const unsigned int numero) {
+bool __attribute__((const)) ePrimo(const unsigned long numero) {
   if (numero < 2)
     return false;
   if (numero == 2 || numero == 3)
@@ -164,7 +164,7 @@ bool ePrimo(const unsigned int numero) {
     números com fatores 2 ou 3 (que sabemos ser divisíveis) se testarmos apenas
     os números da forma 6k±1 (partindo de 5 e incrementando de 6 em 6).
   */
-  for (unsigned int i = 5; i * i <= numero; i += 6) {
+  for (unsigned long i = 5; i * i <= numero; i += 6) {
     if (numero % i == 0 || numero % (i + 2) == 0) {
       return false;
     }
