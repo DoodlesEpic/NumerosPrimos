@@ -32,17 +32,26 @@ SOFTWARE.
 
 #include "Calculadora-primos.h"
 
+static const char *version = "numeros_primos 1.2";
 static void help(const char *name) {
   wprintf(L"Uso: %s [OPÇÃO] [NÚMERO]\n", name);
-  wprintf(L"\n");
+  wprintf(L"Calculadora de números primos em C, saiba quais números primos "
+          L"existem até certo número.\n\n");
+
   wprintf(L"Opções:\n");
   wprintf(L"  -l, --live     Printar valores em tempo real ao invés de esperar "
           "cálculo acabar.\n");
   wprintf(L"  -?, --help     Mostra essa ajuda.\n");
+  wprintf(L"  -v, --version  Mostra a versão do programa.\n\n");
+
+  wprintf(L"Reporte bugs para <moraes.eduardo@proton.me>.\n");
 }
 
-static const struct option options[] = {{"live", no_argument, NULL, 'l'},
-                                        {"help", no_argument, NULL, '?'}};
+static const struct option options[] = {
+    {"live", no_argument, NULL, 'l'},
+    {"help", no_argument, NULL, '?'},
+    {"version", no_argument, NULL, 'v'},
+};
 
 int main(int argc, char *argv[]) {
   // Alterar locale para suportar UTF-8
@@ -50,13 +59,16 @@ int main(int argc, char *argv[]) {
 
   // Inicializar argumentos passados por linha de comando
   bool modoLive = false;
-  for (int c = 0; (c = getopt_long(argc, argv, "l?", options, NULL)) != -1;) {
+  for (int c = 0; (c = getopt_long(argc, argv, "vl?", options, NULL)) != -1;) {
     switch (c) {
     case 'l':
       modoLive = true;
       break;
     case '?':
       help(argv[0]);
+      return 0;
+    case 'v':
+      wprintf(L"%s\n", version);
       return 0;
     default:
       fwprintf(stderr, L"Opção inválida: -%c\n", optopt);
