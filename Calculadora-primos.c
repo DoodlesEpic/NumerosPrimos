@@ -150,8 +150,24 @@ int main(int argc, char *argv[]) {
 
 // Retorna true caso numero seja primo, false caso não seja
 bool ePrimo(const unsigned int numero) {
-  for (unsigned int i = 2; i < numero; i++) {
-    if (numero % i == 0) {
+  if (numero < 2)
+    return false;
+  if (numero == 2 || numero == 3)
+    return true;
+  if (numero % 2 == 0 || numero % 3 == 0)
+    return false;
+
+  /*
+    Todo número primo maior que 3 pode ser escrito na forma 6k±1, onde k é
+    inteiro e positivo. Por exemplo, 5 = 6 × 1 - 1 e 7 = 6 × 1 + 1, e 11 = 6 × 2
+    - 1.
+
+    Ao testar se um número é primo, podemos pular testes de divisibilidade de
+    números com fatores 2 ou 3 (que sabemos ser divisíveis) se testarmos apenas
+    os números da forma 6k±1 (partindo de 5 e incrementando de 6 em 6).
+  */
+  for (unsigned int i = 5; i * i <= numero; i += 6) {
+    if (numero % i == 0 || numero % (i + 2) == 0) {
       return false;
     }
   }
