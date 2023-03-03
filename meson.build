@@ -5,6 +5,6 @@ project('NumerosPrimos', 'c',
 executable('NumerosPrimos',
            'src/main.c',
            include_directories: include_directories('include'),
-           sources: ['src/main.c'],
+           sources: ['src/main.c', 'src/bruteforce.c'],
            install : true)
 

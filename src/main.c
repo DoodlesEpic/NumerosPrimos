@@ -27,7 +27,9 @@ SOFTWARE.
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
+#include "bruteforce.h"
 #include "main.h"
 
 static const char *version = "numeros_primos 1.4";
@@ -46,9 +48,15 @@ static void help(const char *name) {
 }
 
 static const struct option options[] = {
-    {"live", no_argument, NULL, 'l'},
+    {"metodo", required_argument, NULL, 'm'},
     {"help", no_argument, NULL, '?'},
     {"version", no_argument, NULL, 'v'},
+};
+
+enum modo {
+  LIVE,
+  BRUTEFORCE,
+  ERATOSTENES,
 };
 
 int main(int argc, char *argv[]) {
@@ -56,11 +64,22 @@ int main(int argc, char *argv[]) {
   setlocale(LC_ALL, "pt_BR.UTF-8");
 
   // Inicializar argumentos passados por linha de comando
-  bool modoLive = false;
-  for (int c = 0; (c = getopt_long(argc, argv, "vl?", options, NULL)) != -1;) {
+  enum modo modo = ERATOSTENES;
+  for (int c = 0; (c = getopt_long(argc, argv, "vm?", options, NULL)) != -1;) {
     switch (c) {
-    case 'l':
-      modoLive = true;
+    case 'm':
+      if (strcmp(optarg, "live") == 0) {
+        modo = LIVE;
+      }
+
+      if (strcmp(optarg, "bruteforce") == 0) {
+        modo = BRUTEFORCE;
+      }
+
+      if (strcmp(optarg, "erastotenes") == 0) {
+        modo = ERATOSTENES;
+      }
+
       break;
     case '?':
       help(argv[0]);
@@ -88,86 +107,21 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
-  //
-  // MODO LIVE: Os números são printados ao serem calculados, e não são salvos
-  // em um arquivo
-  //
-  if (modoLive) {
+  switch (modo) {
+  case LIVE:
     for (unsigned long i = 2; i <= numero; i++) {
       if (ePrimo(i)) {
         printf("O número %lu é primo\n", i);
       }
     }
+    break;
+  case BRUTEFORCE:
+    bruteforce(numero);
+    break;
+  case ERATOSTENES:
+    printf("TODO");
+    break;
   }
-
-  //
-  // MODO PADRÃO: Os números são printados após todos serem calculados, e são
-  // salvos em um arquivo
-  //
-  else {
-    // Alocar array para salvar os números primos
-    bool *const restrict numerosPrimos = (bool *)malloc(sizeof(bool) * numero);
-    if (!numerosPrimos) {
-      printf("Não foi possível alocar o array de números primos. Saindo.");
-      return 1;
-    }
-
-    // Calcular todos os números primos até o numero
-    for (unsigned long i = 2; i < numero; i++) {
-      numerosPrimos[i] = ePrimo(i);
-    }
-
-    // Abrir arquivo para salvar os números calculados
-    FILE *const restrict fptr = fopen("numeros_primos.txt", "w");
-    if (!fptr) {
-      printf("Não foi possível abrir o arquivo numeros_primos.txt. Saindo.");
-      return 1;
-    }
-
-    // Printar e salvar todos os números primos
-    fprintf(fptr, "Os seguintes números são primos:\n");
-    printf("Os seguintes números são primos:\n");
-    for (unsigned long i = 2; i < numero; i++) {
-      if (numerosPrimos[i]) {
-        printf("%lu, ", i);
-        fprintf(fptr, "%lu, ", i);
-      }
-    }
-
-    // Salvar arquivo com os números primos
-    fclose(fptr);
-
-    // Liberar memória do array
-    free(numerosPrimos);
-  }
-
-  printf("Calculados!\n");
 
   return 0;
-}
-
-// Retorna true caso numero seja primo, false caso não seja
-bool __attribute__((const)) ePrimo(const unsigned long numero) {
-  if (numero < 2)
-    return false;
-  if (numero == 2 || numero == 3)
-    return true;
-  if (numero % 2 == 0 || numero % 3 == 0)
-    return false;
-
-  /*
-    Todo número primo maior que 3 pode ser escrito na forma 6k±1, onde k é
-    inteiro e positivo. Por exemplo, 5 = 6 × 1 - 1 e 7 = 6 × 1 + 1, e 11 = 6 × 2
-    - 1.
-
-    Ao testar se um número é primo, podemos pular testes de divisibilidade de
-    números com fatores 2 ou 3 (que sabemos ser divisíveis) se testarmos apenas
-    os números da forma 6k±1 (partindo de 5 e incrementando de 6 em 6).
-  */
-  for (unsigned long i = 5; i * i <= numero; i += 6) {
-    if (numero % i == 0 || numero % (i + 2) == 0) {
-      return false;
-    }
-  }
-  return true;
 }
