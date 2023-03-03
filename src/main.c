@@ -30,6 +30,7 @@ SOFTWARE.
 #include <string.h>
 
 #include "bruteforce.h"
+#include "eratostenes.h"
 #include "main.h"
 
 static const char *version = "numeros_primos 1.4";
@@ -64,20 +65,21 @@ int main(int argc, char *argv[]) {
   setlocale(LC_ALL, "pt_BR.UTF-8");
 
   // Inicializar argumentos passados por linha de comando
+  int option_index = 0;
   enum modo modo = ERATOSTENES;
-  for (int c = 0; (c = getopt_long(argc, argv, "vm?", options, NULL)) != -1;) {
+  for (int c = 0;
+       (c = getopt_long(argc, argv, "m:v:?", options, &option_index)) != -1;) {
     switch (c) {
     case 'm':
-      if (strcmp(optarg, "live") == 0) {
-        modo = LIVE;
-      }
+      if (optarg) {
+        if (strcmp(optarg, "live") == 0)
+          modo = LIVE;
 
-      if (strcmp(optarg, "bruteforce") == 0) {
-        modo = BRUTEFORCE;
-      }
+        if (strcmp(optarg, "bruteforce") == 0)
+          modo = BRUTEFORCE;
 
-      if (strcmp(optarg, "erastotenes") == 0) {
-        modo = ERATOSTENES;
+        if (strcmp(optarg, "erastotenes") == 0)
+          modo = ERATOSTENES;
       }
 
       break;
@@ -119,9 +121,13 @@ int main(int argc, char *argv[]) {
     bruteforce(numero);
     break;
   case ERATOSTENES:
-    printf("TODO");
+    eratostenes(numero);
     break;
+  default:
+    fprintf(stderr, "Modo inválido.\n");
+    return 1;
   }
 
+  printf("\n");
   return 0;
 }
