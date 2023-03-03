@@ -28,7 +28,7 @@ SOFTWARE.
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "Calculadora-primos.h"
+#include "main.h"
 
 static const char *version = "numeros_primos 1.4";
 static void help(const char *name) {
