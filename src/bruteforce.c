@@ -57,11 +57,8 @@ int bruteforce(const unsigned long numero) {
     }
   }
 
-  // Salvar arquivo com os números primos
-  fclose(fptr);
-
-  // Liberar memória do array
   free(numerosPrimos);
+  fclose(fptr);
 
   return 0;
 }

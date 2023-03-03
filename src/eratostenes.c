@@ -58,5 +58,8 @@ int eratostenes(const unsigned long numero) {
     }
   }
 
+  free(numeros);
+  fclose(fptr);
+
   return 0;
 }
