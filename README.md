@@ -28,8 +28,9 @@ Reporte bugs para <moraes.eduardo@proton.me>.
 
 ## Compilar
 
-Para compilar tenha gcc, clang ou msvc configurado no seu sistema.
-É necessário usar o build system [Meson](https://mesonbuild.com/) para compilar.
+Para compilar tenha GCC ou Clang configurado no seu sistema. É necessário usar o build system [Meson](https://mesonbuild.com/) para compilar.
+
+No Windows é recomendado usar o [MSYS2](https://www.msys2.org/) que disponibiliza GCC e Clang para Windows usando UCRT, Cygwin ou MSVCRT.
 
 ### Debug
 
