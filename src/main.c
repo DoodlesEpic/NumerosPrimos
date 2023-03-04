@@ -35,14 +35,18 @@ SOFTWARE.
 
 static const char *version = "numeros_primos 1.4";
 static void help(const char *name) {
-  printf("Uso: %s [OPÇÃO] [NÚMERO]\n", name);
   printf("Calculadora de números primos em C, saiba quais números primos "
          "existem até certo número.\n\n");
 
+  printf("Exemplos de uso: \n");
+  printf("%s 1000                  Calcular todos primos até 1000\n", name);
+  printf("%s -m brute 1000         Calcular usando bruteforce\n", name);
+  printf("%s -m live 1000          Exibir primos imediatamente\n\n", name);
+
   printf("Opções:\n");
-  printf("  -m, --metodo   Escolher estratégia de cálculo.\n");
-  printf("  -h, --help     Mostra essa ajuda.\n");
-  printf("  -v, --version  Mostra a versão do programa.\n\n");
+  printf("  -m, --metodo <metodo>  Escolher estratégia de cálculo.\n");
+  printf("  -h, --help             Mostra essa ajuda.\n");
+  printf("  -v, --version          Mostra a versão do programa.\n\n");
 
   printf("Reporte bugs para <moraes.eduardo@proton.me>.\n");
 }
@@ -74,7 +78,7 @@ int main(int argc, char *argv[]) {
         if (strcmp(optarg, "live") == 0)
           modo = LIVE;
 
-        if (strcmp(optarg, "bruteforce") == 0)
+        if (strcmp(optarg, "brute") == 0)
           modo = BRUTEFORCE;
 
         if (strcmp(optarg, "erastotenes") == 0)
@@ -95,8 +99,8 @@ int main(int argc, char *argv[]) {
   }
 
   if (optind >= argc) {
-    fprintf(stderr, "Número faltando.\n");
-    printf("Uso: %s [OPÇÃO] [NÚMERO]\n", argv[0]);
+    fprintf(stderr, "Erro: Número faltando.\n\n");
+    printf("Exemplo correto:\n %s 1000  \n", argv[0]);
     return 1;
   }
 
