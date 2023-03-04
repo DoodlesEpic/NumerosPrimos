@@ -53,6 +53,8 @@ int eratostenes(const unsigned long numero) {
     return 1;
   }
 
+  fprintf(fptr, "Os seguintes números são primos:\n");
+  printf("Os seguintes números são primos:\n");
   for (unsigned long i = 2; i < numero; i++) {
     if (numeros[i]) {
       printf("%lu, ", i);

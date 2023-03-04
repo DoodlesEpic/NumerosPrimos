@@ -112,9 +112,10 @@ int main(int argc, char *argv[]) {
 
   switch (modo) {
   case LIVE:
+    printf("Os seguintes números são primos:\n");
     for (unsigned long i = 2; i <= numero; i++) {
       if (ePrimo(i)) {
-        printf("O número %lu é primo\n", i);
+        printf("%lu\n", i);
       }
     }
     break;
