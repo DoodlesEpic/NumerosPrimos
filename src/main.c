@@ -40,8 +40,7 @@ static void help(const char *name) {
          "existem até certo número.\n\n");
 
   printf("Opções:\n");
-  printf("  -l, --live     Printar valores em tempo real ao invés de esperar "
-         "cálculo acabar.\n");
+  printf("  -m, --metodo   Escolher estratégia de cálculo.\n");
   printf("  -?, --help     Mostra essa ajuda.\n");
   printf("  -v, --version  Mostra a versão do programa.\n\n");
 

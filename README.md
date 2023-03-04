@@ -15,7 +15,7 @@ Uso: ./NumerosPrimos [OPÇÃO] [NÚMERO]
 Calculadora de números primos em C, saiba quais números primos existem até
 certo número.
 
-  -l, --live      Printar valores em tempo real ao invés de esperar cálculo acabar.
+  -m, --metodo   Escolher estratégia de cálculo.
   -?, --help      Dar a lista de comandos
   -V, --version   Veja a versão do programa
 
