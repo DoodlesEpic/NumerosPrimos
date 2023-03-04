@@ -41,7 +41,7 @@ static void help(const char *name) {
 
   printf("Opções:\n");
   printf("  -m, --metodo   Escolher estratégia de cálculo.\n");
-  printf("  -?, --help     Mostra essa ajuda.\n");
+  printf("  -h, --help     Mostra essa ajuda.\n");
   printf("  -v, --version  Mostra a versão do programa.\n\n");
 
   printf("Reporte bugs para <moraes.eduardo@proton.me>.\n");
@@ -67,7 +67,7 @@ int main(int argc, char *argv[]) {
   int option_index = 0;
   enum modo modo = ERATOSTENES;
   for (int c = 0;
-       (c = getopt_long(argc, argv, "m:v:?", options, &option_index)) != -1;) {
+       (c = getopt_long(argc, argv, "m:v:h", options, &option_index)) != -1;) {
     switch (c) {
     case 'm':
       if (optarg) {
@@ -82,7 +82,7 @@ int main(int argc, char *argv[]) {
       }
 
       break;
-    case '?':
+    case 'h':
       help(argv[0]);
       return 0;
     case 'v':
