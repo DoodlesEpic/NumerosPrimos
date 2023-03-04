@@ -27,6 +27,15 @@ SOFTWARE.
 #include <stdio.h>
 #include <stdlib.h>
 
+void live(const unsigned long numero) {
+  printf("Os seguintes números são primos:");
+  for (unsigned long i = 2; i <= numero; i++) {
+    if (ePrimo(i)) {
+      printf("\n%lu", i);
+    }
+  }
+}
+
 int bruteforce(const unsigned long numero) {
   // Alocar array para salvar os números primos
   bool *const restrict numerosPrimos = (bool *)malloc(sizeof(bool) * numero);

@@ -112,12 +112,7 @@ int main(int argc, char *argv[]) {
 
   switch (modo) {
   case LIVE:
-    printf("Os seguintes números são primos:\n");
-    for (unsigned long i = 2; i <= numero; i++) {
-      if (ePrimo(i)) {
-        printf("%lu\n", i);
-      }
-    }
+    live(numero);
     break;
   case BRUTEFORCE:
     bruteforce(numero);

@@ -27,6 +27,7 @@ SOFTWARE.
 
 #include <stdbool.h>
 
+void live(const unsigned long numero);
 int bruteforce(const unsigned long numero);
 bool __attribute__((const)) ePrimo(const unsigned long numero);
 
