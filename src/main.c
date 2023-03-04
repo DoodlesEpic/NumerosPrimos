@@ -64,12 +64,11 @@ enum modo {
 };
 
 int main(int argc, char *argv[]) {
-  // Alterar locale para suportar UTF-8
   setlocale(LC_ALL, "pt_BR.UTF-8");
 
-  // Inicializar argumentos passados por linha de comando
   int option_index = 0;
   enum modo modo = ERATOSTENES;
+
   for (int c = 0;
        (c = getopt_long(argc, argv, "m:v:h", options, &option_index)) != -1;) {
     switch (c) {
@@ -104,9 +103,8 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
-  const unsigned long numero = strtoul(argv[optind], NULL, 10);
-
   // Pegar o número até onde os números primos serão calculados
+  const unsigned long numero = strtoul(argv[optind], NULL, 10);
   if (numero <= 1) {
     fprintf(stderr, "O número deve ser maior que 1.\n");
     return 1;

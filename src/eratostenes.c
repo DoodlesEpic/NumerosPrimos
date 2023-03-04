@@ -29,7 +29,8 @@ SOFTWARE.
 int eratostenes(const unsigned long numero) {
   bool *numeros = (bool *)malloc(sizeof *numeros * numero);
   if (!numeros) {
-    printf("Não foi possível alocar o array de números primos. Saindo.");
+    fprintf(stderr,
+            "Não foi possível alocar o array de números primos. Saindo.");
     return 1;
   }
 
@@ -47,7 +48,8 @@ int eratostenes(const unsigned long numero) {
 
   FILE *const restrict fptr = fopen("numeros_primos.txt", "w");
   if (!fptr) {
-    printf("Não foi possível abrir o arquivo numeros_primos.txt. Saindo.");
+    fprintf(stderr,
+            "Não foi possível abrir o arquivo numeros_primos.txt. Saindo.");
     return 1;
   }
 

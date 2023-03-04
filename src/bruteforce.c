@@ -31,7 +31,8 @@ int bruteforce(const unsigned long numero) {
   // Alocar array para salvar os números primos
   bool *const restrict numerosPrimos = (bool *)malloc(sizeof(bool) * numero);
   if (!numerosPrimos) {
-    printf("Não foi possível alocar o array de números primos. Saindo.");
+    fprintf(stderr,
+            "Não foi possível alocar o array de números primos. Saindo.");
     return 1;
   }
 
@@ -43,7 +44,8 @@ int bruteforce(const unsigned long numero) {
   // Abrir arquivo para salvar os números calculados
   FILE *const restrict fptr = fopen("numeros_primos.txt", "w");
   if (!fptr) {
-    printf("Não foi possível abrir o arquivo numeros_primos.txt. Saindo.");
+    fprintf(stderr,
+            "Não foi possível abrir o arquivo numeros_primos.txt. Saindo.");
     return 1;
   }
 
