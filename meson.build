@@ -1,5 +1,5 @@
 project('NumerosPrimos', 'c',
-  version : '1.4',
+  version : '2.0',
   default_options : ['warning_level=everything'])
 
 executable('NumerosPrimos',

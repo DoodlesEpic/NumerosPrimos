@@ -33,7 +33,7 @@ SOFTWARE.
 #include "eratostenes.h"
 #include "main.h"
 
-static const char *version = "numeros_primos 1.4";
+static const char *version = "numeros_primos 2.0";
 static void help(const char *name) {
   printf("Calculadora de números primos em C, saiba quais números primos "
          "existem até certo número.\n\n");
