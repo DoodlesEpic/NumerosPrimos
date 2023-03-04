@@ -11,13 +11,17 @@ Alternativamente clonar o repositório via: `git clone https://github.com/Doodle
 ### Comandos
 
 ```
-Uso: ./NumerosPrimos [OPÇÃO] [NÚMERO]
-Calculadora de números primos em C, saiba quais números primos existem até
-certo número.
+Calculadora de números primos em C, saiba quais números primos existem até certo número.
 
-  -l, --live      Printar valores em tempo real ao invés de esperar cálculo acabar.
-  -?, --help      Dar a lista de comandos
-  -V, --version   Veja a versão do programa
+Exemplos de uso:
+./NumerosPrimos 1000                  Calcular todos primos até 1000
+./NumerosPrimos -m brute 1000         Calcular usando bruteforce
+./NumerosPrimos -m live 1000          Exibir primos imediatamente
+
+Opções:
+  -m, --metodo <metodo>  Escolher estratégia de cálculo.
+  -h, --help             Mostra essa ajuda.
+  -v, --version          Mostra a versão do programa.
 
 Reporte bugs para <moraes.eduardo@proton.me>.
 ```

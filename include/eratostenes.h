@@ -1,7 +1,7 @@
 /*
 MIT License
 
-Copyright (c) 2020 Eduardo
+Copyright (c) 2023 Eduardo
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,12 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#ifndef CALCULADORA_PRIMOS_H
-#define CALCULADORA_PRIMOS_H
+#ifndef ERATOSTENES_H
+#define ERATOSTENES_H
 
 #include <stdbool.h>
 
-// Retorna true caso numero seja primo, false caso não seja
-bool __attribute__((const)) ePrimo(const unsigned long numero);
+int eratostenes(const unsigned long numero);
 
-#endif // CALCULADORA_PRIMOS_H
+#endif // ERATOSTENES_H
