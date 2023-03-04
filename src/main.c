@@ -80,7 +80,7 @@ int main(int argc, char *argv[]) {
         if (strcmp(optarg, "brute") == 0)
           modo = BRUTEFORCE;
 
-        if (strcmp(optarg, "erastotenes") == 0)
+        if (strcmp(optarg, "eratostenes") == 0)
           modo = ERATOSTENES;
       }
 
